@@ -15,3 +15,6 @@
 
 (def fib
   (map first fib-seq))
+
+(def prng-seq
+  (iterate (fn [x] (mod (+' (* 7 x) 5) 11)) 0))
