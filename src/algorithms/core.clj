@@ -16,5 +16,16 @@
 (def fib
   (map first fib-seq))
 
-(def prng-seq
-  (iterate (fn [x] (mod (+' (* 7 x) 5) 11)) 0))
+(defn- prngf 
+  "Pseudo-random number generating function, as in Essential Algorithms, Chapter 2"
+  [x]
+  (let [a 7  ;; magic constants; TODO: do better
+        b 5
+        m 11]
+    (-> x
+        (* ,,, a)
+        (+' ,,, b)
+        (mod ,,, m))))
+
+(def rnd
+  (iterate prngf 0))
