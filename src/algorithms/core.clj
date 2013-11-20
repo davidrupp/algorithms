@@ -6,9 +6,20 @@
     (recur b (mod a b))))
 
 (defn pow [n exp]
+  "naive version O(n)"
   (if (= 0 exp)
     1
     (*' n (pow n (dec exp)))))
+
+(defn pow2 [n exp]
+  "better version O(lg n)"
+  (if (= 0 exp)
+    1
+    (if (even? exp)
+      (let [mem (pow2 n (/ exp 2))]
+        (*' mem mem))
+      (let [mem (pow2 n (/ (- exp 1) 2))]
+        (*' mem mem n)))))
 
 (def fib-seq
   (iterate (fn [[x y]] [y (+' x y)]) [0 1]))
