@@ -40,7 +40,7 @@
   (map first fib-seq))
 
 (def mfib-seq
-  (let [z [[0 0] [0 0]]
+  (let [z (zero-matrix 2 2)
         f (matrix [[1 1] [1 0]])]
     (lazy-seq (cons z (iterate (partial mmul f) f)))))
 
